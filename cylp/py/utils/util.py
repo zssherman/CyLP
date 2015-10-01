@@ -1,4 +1,8 @@
 from __future__ import print_function
+try:
+    long
+except NameError:
+    long = int
 
 import numpy as np
 from math import atan2

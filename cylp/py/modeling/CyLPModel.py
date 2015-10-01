@@ -120,6 +120,7 @@
 '''
 
 from __future__ import print_function
+from functools import reduce
 # Python 3 does not have a long function, only int
 try:
     long
@@ -167,7 +168,7 @@ def identitySub(var):
         return m
     return I(n)[var.indices, :]
 
-class CyLPExpr:
+class CyLPExpr(object):
     operators = ('>=', '<=', '==', '+', '-', '*', 'u-', 'sum')
 
     def __init__(self, opr='', left='', right=''):
@@ -218,8 +219,20 @@ class CyLPExpr:
         self.expr = v
         return v
 
+    def __sub__(self, other):
+        v = CyLPExpr(opr="-", left=self, right=other)
+        v.expr = v
+        self.expr = v
+        return v
+
     def __radd__(self, other):
         v = CyLPExpr(opr="+", left=other, right=self)
+        v.expr = v
+        self.expr = v
+        return v
+
+    def __add__(self, other):
+        v = CyLPExpr(opr="+", left=self, right=other)
         v.expr = v
         self.expr = v
         return v
@@ -912,7 +925,7 @@ class CyLPModel(object):
             if name in c.varNames:
                 c.varNames.remove(name)
                 del c.parentVarDims[name]
-                for v in c.varCoefs.keys():
+                for v in list(c.varCoefs.keys()):
                     if v.name == name:
                         del c.varCoefs[v]
 

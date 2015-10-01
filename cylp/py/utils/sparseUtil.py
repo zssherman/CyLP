@@ -10,6 +10,10 @@ Function :py:func:`sparseConcat` concatenates two sparse matrices
 regardless of their dimension alignments. Fills with zeros where necessary.
 
 '''
+try:
+    long
+except NameError:
+    long = int
 
 from scipy import sparse
 import numpy as np

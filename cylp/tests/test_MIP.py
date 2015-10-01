@@ -107,7 +107,7 @@ class TestMIP(unittest.TestCase):
 
         s.copyInIntegerInformation(np.array(s.nCols * [True], np.uint8))
 
-        print "Solving relaxation"
+        print("Solving relaxation")
         cbcModel = s.getCbcModel()
         n = SimpleNodeCompare()
         cbcModel.setNodeCompare(n)

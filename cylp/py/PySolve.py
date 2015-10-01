@@ -27,7 +27,7 @@ def solve(filename, method):
     elif method == 'p':
         pivot = PositiveEdgePivot(s)
     else:
-        print 'Unkown solution method.'
+        print('Unkown solution method.')
         sys.exit(1)
 
     s.setPivotMethod(pivot)
@@ -36,7 +36,7 @@ def solve(filename, method):
 
     start = clock()
     s.primal()
-    print 'Problem solved in %g seconds.' % (clock() - start)
+    print('Problem solved in %g seconds.' % (clock() - start))
     return s.objectiveValue
 
 
@@ -67,7 +67,7 @@ def solve(filename, method):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print 'Usage example (Dantzig pivot): PySolve file.mps d'
+        print('Usage example (Dantzig pivot): PySolve file.mps d')
         sys.exit(1)
     solve(sys.argv[1], sys.argv[2])
     #cProfile.run('solve(sys.argv[1], sys.argv[2])')
