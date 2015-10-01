@@ -9,7 +9,7 @@ import numpy as np
 from operator import itemgetter
 from random import shuffle
 from math import floor
-from DualPivotPythonBase import DualPivotPythonBase
+from .DualPivotPythonBase import DualPivotPythonBase
 #from cylp.py.pivots import DantzigPivot
 
 
@@ -107,7 +107,7 @@ def getMpsExample():
 
 
 if __name__ == "__main__":
-    print sys.argv
+    print(sys.argv)
     if len(sys.argv) == 1:
         import doctest
         doctest.testmod()

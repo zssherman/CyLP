@@ -1,6 +1,9 @@
-from itertools import izip
+try:
+    from itertools import izip
+except ImportError:   # izip built into zip in Python 3
+    izip = zip
 import numpy as np
-from PivotPythonBase import PivotPythonBase
+from .PivotPythonBase import PivotPythonBase
 
 
 class WolfePivot(PivotPythonBase):

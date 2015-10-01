@@ -119,6 +119,13 @@
 
 '''
 
+from __future__ import print_function
+# Python 3 does not have a long function, only int
+try:
+    long
+except NameError:
+    long = int
+
 from itertools import product
 from copy import deepcopy
 from operator import mul
@@ -714,7 +721,7 @@ class IndexFactory:
         if not varName:
             raise Exception('You must specify a name for a variable.')
         if varName in self.varIndex.keys():
-            print 'Variable already exists.'
+            print('Variable already exists.')
             #self.varIndex[varName] += range(self.currentVarIndex,
             #                                self.currentVarIndex +
             #                                numberOfVars)
@@ -751,7 +758,7 @@ class IndexFactory:
         if not constName:
             raise Exception('You must specify a name for a constraint.')
         if self.hasConst(constName):
-            print 'Constraint already exists: %s' % constName
+            print('Constraint already exists: %s' % constName)
             #self.constIndex[constName] += range(self.currentConstIndex,
             #        self.currentConstIndex + numberOfConsts)
         else:
@@ -880,7 +887,7 @@ class CyLPModel(object):
         else:
             if end == o.shape[1]:
                 if start == 0:
-                    print 'Problem empty.'
+                    print('Problem empty.')
                 else:
                     o = o[0, :start]
             elif start == 0:
@@ -1137,7 +1144,7 @@ if __name__ == '__main__':
     s.writeMps('/Users/mehdi/Desktop/test.mps')
     s.primal()
     sol = s.primalVariableSolution
-    print sol
+    print(sol)
 
 #model = CyLPModel()
 #
