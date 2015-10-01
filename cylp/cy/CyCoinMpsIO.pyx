@@ -7,6 +7,7 @@ read a QP using CoinMpsIO and work on the elements of the problem, e.g. the
 Hessian,...
 '''
 # cython: embedsignature=True
+# cython: c_string_type=str, c_string_encoding=ascii
 
 import numpy as np
 from scipy import sparse
@@ -64,6 +65,8 @@ cdef class CyCoinMpsIO:
         True
 
         '''
+        if type(filename) is str:
+            filename = filename.encode('ascii')
 
         ret = self.CppSelf.readMps(filename)
         if ret == 0 and self.CppSelf.IreadQuadraticMps(NULL, 0) == 0:

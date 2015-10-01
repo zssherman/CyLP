@@ -846,15 +846,15 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 #define __Pyx_PyObject_GetAttrStr(o,n) PyObject_GetAttr(o,n)
 #endif
 
-static PyObject *__Pyx_GetBuiltinName(PyObject *name);
-
-static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name);
-
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
 #else
 #define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
 #endif
+
+static PyObject *__Pyx_GetBuiltinName(PyObject *name);
+
+static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name);
 
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
@@ -1161,10 +1161,12 @@ static char __pyx_k_join[] = "join";
 static char __pyx_k_main[] = "__main__";
 static char __pyx_k_path[] = "path";
 static char __pyx_k_test[] = "__test__";
+static char __pyx_k_ascii[] = "ascii";
 static char __pyx_k_numpy[] = "numpy";
 static char __pyx_k_range[] = "range";
 static char __pyx_k_scipy[] = "scipy";
 static char __pyx_k_shape[] = "shape";
+static char __pyx_k_encode[] = "encode";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_sparse[] = "sparse";
 static char __pyx_k_curpath[] = "curpath";
@@ -1191,7 +1193,7 @@ static char __pyx_k_csr_matrixPlus[] = "csr_matrixPlus";
 static char __pyx_k_input_hs268_qps[] = "../input/hs268.qps";
 static char __pyx_k_cylp_cy_CyCoinMpsIO[] = "cylp.cy.CyCoinMpsIO";
 static char __pyx_k_cylp_py_utils_sparseUtil[] = "cylp.py.utils.sparseUtil";
-static char __pyx_k_CyCoinMpsIO_readMps_line_21[] = "CyCoinMpsIO.readMps (line 21)";
+static char __pyx_k_CyCoinMpsIO_readMps_line_22[] = "CyCoinMpsIO.readMps (line 22)";
 static char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static char __pyx_k_Read_an_mps_file_Check_if_the_f[] = "\n        Read an mps file. Check if the file is a QP symmetrisize its Hessian\n        and store it.\n\n        >>> import numpy as np\n        >>> from cylp.cy import CyCoinMpsIO\n        >>> from cylp.cy.CyCoinMpsIO import getQpsExample\n        >>> problem = CyCoinMpsIO()\n        >>> problem.readMps(getQpsExample())\n        0\n        >>> problem.nVariables\n        5\n        >>> problem.nConstraints\n        5\n        >>> signs = problem.constraintSigns\n        >>> [chr(i) for i in signs] == problem.nConstraints * ['G']\n        True\n        >>> c = problem.matrixByRow\n        >>> (abs(c.elements -\n        ...     np.array([-1., -1., -1., -1., -1.,  10.,  10.,  -3.,\n        ...                5., 4.,  -8., 1., -2., -5., 3., 8., -1., 2.,\n        ...                5., -3.,  -4.,  -2., 3., -5., 1.])) <\n        ...                            10 ** -8).all()\n        True\n        >>> (c.indices ==\n        ...       np.array([0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1,\n        ...                 2, 3, 4, 0, 1, 2, 3, 4], dtype=np.int32)).all()\n        True\n        >>> (c.vectorStarts ==\n        ...        np.array([0, 5, 10, 15, 20, 25], dtype=np.int32)).all()\n        True\n        >>> (problem.rightHandSide ==\n        ...        np.array([-5., 20., -40., 11., -30.])).all()\n        True\n        >>> H = problem.Hessian.todense()\n        >>> (abs(H -\n        ... np.matrix([[20394., -24908., -2026., 3896., 658.],\n        ...            [-24908., 41818., -3466., -9828., -372.],\n        ...            [-2026., -3466., 3510., 2178., -348.],\n        ...            [3896., -9828., 2178., 3030., -44.],\n        ...            [658., -372., -348., -44., 54.]])) <\n        ...                            10 ** -8).all()\n        True\n\n        ";
 static char __pyx_k_This_module_interface_COIN_OR_s[] = "\nThis module interface COIN-OR's ``CoinMpsIO``. When you call\n:func:`cylp.cy.CyClpSimplex.readMps` then ``CoinMpsIO``'s ``readMps`` is\ncalled.  The main reason why cylp interfaces this class is to be able to read\nan ``mps`` file without creating a Simplex object. This way it is possible to\nread a QP using CoinMpsIO and work on the elements of the problem, e.g. the\nHessian,...\n";
@@ -1201,7 +1203,7 @@ static char __pyx_k_Format_string_allocated_too_shor[] = "Format string allocate
 static char __pyx_k_Non_native_byte_order_not_suppor[] = "Non-native byte order not supported";
 static char __pyx_k_ndarray_is_not_Fortran_contiguou[] = "ndarray is not Fortran contiguous";
 static char __pyx_k_Format_string_allocated_too_shor_2[] = "Format string allocated too short.";
-static PyObject *__pyx_kp_u_CyCoinMpsIO_readMps_line_21;
+static PyObject *__pyx_kp_u_CyCoinMpsIO_readMps_line_22;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor_2;
 static PyObject *__pyx_kp_u_Non_native_byte_order_not_suppor;
@@ -1212,6 +1214,7 @@ static PyObject *__pyx_kp_u_Read_an_mps_file_Check_if_the_f;
 static PyObject *__pyx_n_s_RuntimeError;
 static PyObject *__pyx_n_s_T;
 static PyObject *__pyx_n_s_ValueError;
+static PyObject *__pyx_n_s_ascii;
 static PyObject *__pyx_n_s_checkSymmetry;
 static PyObject *__pyx_n_s_csc_matrixPlus;
 static PyObject *__pyx_n_s_csr_matrixPlus;
@@ -1222,6 +1225,7 @@ static PyObject *__pyx_n_s_cylp_py_utils_sparseUtil;
 static PyObject *__pyx_n_s_dia_matrix;
 static PyObject *__pyx_n_s_diagonal;
 static PyObject *__pyx_n_s_dirname;
+static PyObject *__pyx_n_s_encode;
 static PyObject *__pyx_n_s_filename;
 static PyObject *__pyx_n_s_getQpsExample;
 static PyObject *__pyx_n_s_getfile;
@@ -1281,9 +1285,10 @@ static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
-static PyObject *__pyx_codeobj__8;
+static PyObject *__pyx_tuple__8;
+static PyObject *__pyx_codeobj__9;
 
-/* "cylp/cy/CyCoinMpsIO.pyx":17
+/* "cylp/cy/CyCoinMpsIO.pyx":18
  * 
  * cdef class CyCoinMpsIO:
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1316,7 +1321,7 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO___cinit__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":18
+  /* "cylp/cy/CyCoinMpsIO.pyx":19
  * cdef class CyCoinMpsIO:
  *     def __cinit__(self):
  *         self.CppSelf = new CppICoinMpsIO()             # <<<<<<<<<<<<<<
@@ -1327,11 +1332,11 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO___cinit__(struct __pyx
     __pyx_t_1 = new ICoinMpsIO();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_v_self->CppSelf = __pyx_t_1;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":19
+  /* "cylp/cy/CyCoinMpsIO.pyx":20
  *     def __cinit__(self):
  *         self.CppSelf = new CppICoinMpsIO()
  *         self.Hessian = 0             # <<<<<<<<<<<<<<
@@ -1344,7 +1349,7 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO___cinit__(struct __pyx
   __Pyx_DECREF(__pyx_v_self->Hessian);
   __pyx_v_self->Hessian = __pyx_int_0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":17
+  /* "cylp/cy/CyCoinMpsIO.pyx":18
  * 
  * cdef class CyCoinMpsIO:
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1363,7 +1368,7 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO___cinit__(struct __pyx
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":21
+/* "cylp/cy/CyCoinMpsIO.pyx":22
  *         self.Hessian = 0
  * 
  *     def readMps(self, filename):             # <<<<<<<<<<<<<<
@@ -1395,11 +1400,11 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
   PyObject *__pyx_v_Hessian = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  char *__pyx_t_1;
+  int __pyx_t_1;
   int __pyx_t_2;
-  int __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
+  char *__pyx_t_5;
   PyObject *__pyx_t_6 = NULL;
   PyObject *__pyx_t_7 = NULL;
   PyObject *__pyx_t_8 = NULL;
@@ -1407,123 +1412,159 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("readMps", 0);
+  __Pyx_INCREF(__pyx_v_filename);
 
   /* "cylp/cy/CyCoinMpsIO.pyx":68
+ * 
  *         '''
+ *         if type(filename) is str:             # <<<<<<<<<<<<<<
+ *             filename = filename.encode('ascii')
+ * 
+ */
+  __pyx_t_1 = (((PyObject *)Py_TYPE(__pyx_v_filename)) == ((PyObject *)(&PyString_Type)));
+  __pyx_t_2 = (__pyx_t_1 != 0);
+  if (__pyx_t_2) {
+
+    /* "cylp/cy/CyCoinMpsIO.pyx":69
+ *         '''
+ *         if type(filename) is str:
+ *             filename = filename.encode('ascii')             # <<<<<<<<<<<<<<
+ * 
+ *         ret = self.CppSelf.readMps(filename)
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_filename, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF_SET(__pyx_v_filename, __pyx_t_4);
+    __pyx_t_4 = 0;
+
+    /* "cylp/cy/CyCoinMpsIO.pyx":68
+ * 
+ *         '''
+ *         if type(filename) is str:             # <<<<<<<<<<<<<<
+ *             filename = filename.encode('ascii')
+ * 
+ */
+  }
+
+  /* "cylp/cy/CyCoinMpsIO.pyx":71
+ *             filename = filename.encode('ascii')
  * 
  *         ret = self.CppSelf.readMps(filename)             # <<<<<<<<<<<<<<
  *         if ret == 0 and self.CppSelf.IreadQuadraticMps(NULL, 0) == 0:
  *             start = self.QPColumnStarts
  */
-  __pyx_t_1 = __Pyx_PyObject_AsString(__pyx_v_filename); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_ret = __pyx_v_self->CppSelf->readMps(__pyx_t_1);
+  __pyx_t_5 = __Pyx_PyObject_AsString(__pyx_v_filename); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v_ret = __pyx_v_self->CppSelf->readMps(__pyx_t_5);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":69
+  /* "cylp/cy/CyCoinMpsIO.pyx":72
  * 
  *         ret = self.CppSelf.readMps(filename)
  *         if ret == 0 and self.CppSelf.IreadQuadraticMps(NULL, 0) == 0:             # <<<<<<<<<<<<<<
  *             start = self.QPColumnStarts
  *             col = self.QPColumns
  */
-  __pyx_t_3 = ((__pyx_v_ret == 0) != 0);
-  if (__pyx_t_3) {
+  __pyx_t_1 = ((__pyx_v_ret == 0) != 0);
+  if (__pyx_t_1) {
   } else {
-    __pyx_t_2 = __pyx_t_3;
-    goto __pyx_L4_bool_binop_done;
+    __pyx_t_2 = __pyx_t_1;
+    goto __pyx_L5_bool_binop_done;
   }
-  __pyx_t_3 = ((__pyx_v_self->CppSelf->IreadQuadraticMps(NULL, 0) == 0) != 0);
-  __pyx_t_2 = __pyx_t_3;
-  __pyx_L4_bool_binop_done:;
+  __pyx_t_1 = ((__pyx_v_self->CppSelf->IreadQuadraticMps(NULL, 0) == 0) != 0);
+  __pyx_t_2 = __pyx_t_1;
+  __pyx_L5_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":70
+    /* "cylp/cy/CyCoinMpsIO.pyx":73
  *         ret = self.CppSelf.readMps(filename)
  *         if ret == 0 and self.CppSelf.IreadQuadraticMps(NULL, 0) == 0:
  *             start = self.QPColumnStarts             # <<<<<<<<<<<<<<
  *             col = self.QPColumns
  *             el = self.QPElements
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_QPColumnStarts); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_QPColumnStarts); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_start = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":71
+    /* "cylp/cy/CyCoinMpsIO.pyx":74
  *         if ret == 0 and self.CppSelf.IreadQuadraticMps(NULL, 0) == 0:
  *             start = self.QPColumnStarts
  *             col = self.QPColumns             # <<<<<<<<<<<<<<
  *             el = self.QPElements
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_QPColumns); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_QPColumns); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_col = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":72
+    /* "cylp/cy/CyCoinMpsIO.pyx":75
  *             start = self.QPColumnStarts
  *             col = self.QPColumns
  *             el = self.QPElements             # <<<<<<<<<<<<<<
  * 
  *             n = self.nVariables
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_QPElements); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_QPElements); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_el = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":74
+    /* "cylp/cy/CyCoinMpsIO.pyx":77
  *             el = self.QPElements
  * 
  *             n = self.nVariables             # <<<<<<<<<<<<<<
  *             m = self.nConstraints
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_nVariables); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_nVariables); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_n = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":75
+    /* "cylp/cy/CyCoinMpsIO.pyx":78
  * 
  *             n = self.nVariables
  *             m = self.nConstraints             # <<<<<<<<<<<<<<
  * 
  *             Hessian = csr_matrixPlus((el, col, start), shape=(n, n))
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_nConstraints); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_nConstraints); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_m = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":77
+    /* "cylp/cy/CyCoinMpsIO.pyx":80
  *             m = self.nConstraints
  * 
  *             Hessian = csr_matrixPlus((el, col, start), shape=(n, n))             # <<<<<<<<<<<<<<
  *             # Fill the other half of the symmetric Hessian
  *             Hessian = Hessian + Hessian.T - dia_matrix((Hessian.diagonal(),[0]), shape=(n, n))
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_csr_matrixPlus); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_csr_matrixPlus); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_el);
     __Pyx_GIVEREF(__pyx_v_el);
-    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_el);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_el);
     __Pyx_INCREF(__pyx_v_col);
     __Pyx_GIVEREF(__pyx_v_col);
-    PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_col);
+    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_col);
     __Pyx_INCREF(__pyx_v_start);
     __Pyx_GIVEREF(__pyx_v_start);
-    PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_start);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_start);
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_INCREF(__pyx_v_n);
     __Pyx_GIVEREF(__pyx_v_n);
@@ -1531,31 +1572,31 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
     __Pyx_INCREF(__pyx_v_n);
     __Pyx_GIVEREF(__pyx_v_n);
     PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_v_n);
-    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_Hessian = __pyx_t_7;
     __pyx_t_7 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":79
+    /* "cylp/cy/CyCoinMpsIO.pyx":82
  *             Hessian = csr_matrixPlus((el, col, start), shape=(n, n))
  *             # Fill the other half of the symmetric Hessian
  *             Hessian = Hessian + Hessian.T - dia_matrix((Hessian.diagonal(),[0]), shape=(n, n))             # <<<<<<<<<<<<<<
  *             self.Hessian = Hessian
  * 
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_Hessian, __pyx_n_s_T); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_Hessian, __pyx_n_s_T); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_5 = PyNumber_Add(__pyx_v_Hessian, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_3 = PyNumber_Add(__pyx_v_Hessian, __pyx_t_7); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_dia_matrix); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_dia_matrix); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_Hessian, __pyx_n_s_diagonal); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_Hessian, __pyx_n_s_diagonal); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_8 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
@@ -1568,19 +1609,19 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
       }
     }
     if (__pyx_t_8) {
-      __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     } else {
-      __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_int_0);
     __Pyx_GIVEREF(__pyx_int_0);
     PyList_SET_ITEM(__pyx_t_4, 0, __pyx_int_0);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6);
@@ -1588,14 +1629,14 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
     PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_4);
     __pyx_t_6 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_8);
     __pyx_t_8 = 0;
-    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_v_n);
     __Pyx_GIVEREF(__pyx_v_n);
@@ -1603,21 +1644,21 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
     __Pyx_INCREF(__pyx_v_n);
     __Pyx_GIVEREF(__pyx_v_n);
     PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_n);
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, __pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, __pyx_t_8); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyNumber_Subtract(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyNumber_Subtract(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF_SET(__pyx_v_Hessian, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":80
+    /* "cylp/cy/CyCoinMpsIO.pyx":83
  *             # Fill the other half of the symmetric Hessian
  *             Hessian = Hessian + Hessian.T - dia_matrix((Hessian.diagonal(),[0]), shape=(n, n))
  *             self.Hessian = Hessian             # <<<<<<<<<<<<<<
@@ -1630,7 +1671,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
     __Pyx_DECREF(__pyx_v_self->Hessian);
     __pyx_v_self->Hessian = __pyx_v_Hessian;
 
-    /* "cylp/cy/CyCoinMpsIO.pyx":69
+    /* "cylp/cy/CyCoinMpsIO.pyx":72
  * 
  *         ret = self.CppSelf.readMps(filename)
  *         if ret == 0 and self.CppSelf.IreadQuadraticMps(NULL, 0) == 0:             # <<<<<<<<<<<<<<
@@ -1639,7 +1680,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
  */
   }
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":82
+  /* "cylp/cy/CyCoinMpsIO.pyx":85
  *             self.Hessian = Hessian
  * 
  *         return ret             # <<<<<<<<<<<<<<
@@ -1647,13 +1688,13 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
  *     def readQuadraticMps(self, filename, checkSymmetry):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_ret); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_ret); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_r = __pyx_t_8;
   __pyx_t_8 = 0;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":21
+  /* "cylp/cy/CyCoinMpsIO.pyx":22
  *         self.Hessian = 0
  * 
  *     def readMps(self, filename):             # <<<<<<<<<<<<<<
@@ -1663,8 +1704,8 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
 
   /* function exit code */
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
@@ -1677,12 +1718,13 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_2readMps(struct 
   __Pyx_XDECREF(__pyx_v_n);
   __Pyx_XDECREF(__pyx_v_m);
   __Pyx_XDECREF(__pyx_v_Hessian);
+  __Pyx_XDECREF(__pyx_v_filename);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":84
+/* "cylp/cy/CyCoinMpsIO.pyx":87
  *         return ret
  * 
  *     def readQuadraticMps(self, filename, checkSymmetry):             # <<<<<<<<<<<<<<
@@ -1721,11 +1763,11 @@ static PyObject *__pyx_pw_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_5readQuadraticMp
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_checkSymmetry)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("readQuadraticMps", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("readQuadraticMps", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "readQuadraticMps") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "readQuadraticMps") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -1738,7 +1780,7 @@ static PyObject *__pyx_pw_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_5readQuadraticMp
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("readQuadraticMps", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("readQuadraticMps", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("cylp.cy.CyCoinMpsIO.CyCoinMpsIO.readQuadraticMps", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1761,7 +1803,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_4readQuadraticMp
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("readQuadraticMps", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":85
+  /* "cylp/cy/CyCoinMpsIO.pyx":88
  * 
  *     def readQuadraticMps(self, filename, checkSymmetry):
  *         return self.CppSelf.IreadQuadraticMps(NULL, checkSymmetry)             # <<<<<<<<<<<<<<
@@ -1769,14 +1811,14 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_4readQuadraticMp
  *     property Hessian:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_checkSymmetry); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->CppSelf->IreadQuadraticMps(NULL, __pyx_t_1)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_checkSymmetry); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->CppSelf->IreadQuadraticMps(NULL, __pyx_t_1)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":84
+  /* "cylp/cy/CyCoinMpsIO.pyx":87
  *         return ret
  * 
  *     def readQuadraticMps(self, filename, checkSymmetry):             # <<<<<<<<<<<<<<
@@ -1795,7 +1837,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_4readQuadraticMp
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":88
+/* "cylp/cy/CyCoinMpsIO.pyx":91
  * 
  *     property Hessian:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1821,7 +1863,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_7Hessian___get__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":89
+  /* "cylp/cy/CyCoinMpsIO.pyx":92
  *     property Hessian:
  *         def __get__(self):
  *             return self.Hessian             # <<<<<<<<<<<<<<
@@ -1833,7 +1875,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_7Hessian___get__
   __pyx_r = __pyx_v_self->Hessian;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":88
+  /* "cylp/cy/CyCoinMpsIO.pyx":91
  * 
  *     property Hessian:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1848,7 +1890,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_7Hessian___get__
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":91
+/* "cylp/cy/CyCoinMpsIO.pyx":94
  *             return self.Hessian
  * 
  *         def __set__(self, h):             # <<<<<<<<<<<<<<
@@ -1874,7 +1916,7 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_7Hessian_2__set__(stru
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":92
+  /* "cylp/cy/CyCoinMpsIO.pyx":95
  * 
  *         def __set__(self, h):
  *             self.Hessian = h             # <<<<<<<<<<<<<<
@@ -1887,7 +1929,7 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_7Hessian_2__set__(stru
   __Pyx_DECREF(__pyx_v_self->Hessian);
   __pyx_v_self->Hessian = __pyx_v_h;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":91
+  /* "cylp/cy/CyCoinMpsIO.pyx":94
  *             return self.Hessian
  * 
  *         def __set__(self, h):             # <<<<<<<<<<<<<<
@@ -1901,7 +1943,7 @@ static int __pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_7Hessian_2__set__(stru
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":95
+/* "cylp/cy/CyCoinMpsIO.pyx":98
  * 
  *     property variableLower:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1928,7 +1970,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13variableLower_
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":96
+  /* "cylp/cy/CyCoinMpsIO.pyx":99
  *     property variableLower:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getColLower()             # <<<<<<<<<<<<<<
@@ -1941,7 +1983,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13variableLower_
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":95
+  /* "cylp/cy/CyCoinMpsIO.pyx":98
  * 
  *     property variableLower:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1956,7 +1998,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13variableLower_
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":99
+/* "cylp/cy/CyCoinMpsIO.pyx":102
  * 
  *     property variableUpper:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -1983,7 +2025,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13variableUpper_
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":100
+  /* "cylp/cy/CyCoinMpsIO.pyx":103
  *     property variableUpper:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getColUpper()             # <<<<<<<<<<<<<<
@@ -1996,7 +2038,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13variableUpper_
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":99
+  /* "cylp/cy/CyCoinMpsIO.pyx":102
  * 
  *     property variableUpper:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2011,7 +2053,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13variableUpper_
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":103
+/* "cylp/cy/CyCoinMpsIO.pyx":106
  * 
  *     property constraintSigns:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2038,7 +2080,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintSign
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":104
+  /* "cylp/cy/CyCoinMpsIO.pyx":107
  *     property constraintSigns:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getRowSense()             # <<<<<<<<<<<<<<
@@ -2051,7 +2093,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintSign
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":103
+  /* "cylp/cy/CyCoinMpsIO.pyx":106
  * 
  *     property constraintSigns:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2066,7 +2108,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintSign
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":107
+/* "cylp/cy/CyCoinMpsIO.pyx":110
  * 
  *     property rightHandSide:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2093,7 +2135,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13rightHandSide_
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":108
+  /* "cylp/cy/CyCoinMpsIO.pyx":111
  *     property rightHandSide:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getRightHandSide()             # <<<<<<<<<<<<<<
@@ -2106,7 +2148,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13rightHandSide_
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":107
+  /* "cylp/cy/CyCoinMpsIO.pyx":110
  * 
  *     property rightHandSide:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2121,7 +2163,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_13rightHandSide_
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":111
+/* "cylp/cy/CyCoinMpsIO.pyx":114
  * 
  *     property constraintRange:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2148,7 +2190,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintRang
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":112
+  /* "cylp/cy/CyCoinMpsIO.pyx":115
  *     property constraintRange:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getRowRange()             # <<<<<<<<<<<<<<
@@ -2161,7 +2203,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintRang
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":111
+  /* "cylp/cy/CyCoinMpsIO.pyx":114
  * 
  *     property constraintRange:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2176,7 +2218,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintRang
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":115
+/* "cylp/cy/CyCoinMpsIO.pyx":118
  * 
  *     property constraintLower:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2203,7 +2245,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintLowe
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":116
+  /* "cylp/cy/CyCoinMpsIO.pyx":119
  *     property constraintLower:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getRowLower()             # <<<<<<<<<<<<<<
@@ -2216,7 +2258,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintLowe
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":115
+  /* "cylp/cy/CyCoinMpsIO.pyx":118
  * 
  *     property constraintLower:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2231,7 +2273,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintLowe
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":119
+/* "cylp/cy/CyCoinMpsIO.pyx":122
  * 
  *     property constraintUpper:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2258,7 +2300,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintUppe
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":120
+  /* "cylp/cy/CyCoinMpsIO.pyx":123
  *     property constraintUpper:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getRowUpper()             # <<<<<<<<<<<<<<
@@ -2271,7 +2313,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintUppe
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":119
+  /* "cylp/cy/CyCoinMpsIO.pyx":122
  * 
  *     property constraintUpper:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2286,7 +2328,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15constraintUppe
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":123
+/* "cylp/cy/CyCoinMpsIO.pyx":126
  * 
  *     property objCoefficients:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2313,7 +2355,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15objCoefficient
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":124
+  /* "cylp/cy/CyCoinMpsIO.pyx":127
  *     property objCoefficients:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_getObjCoefficients()             # <<<<<<<<<<<<<<
@@ -2326,7 +2368,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15objCoefficient
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":123
+  /* "cylp/cy/CyCoinMpsIO.pyx":126
  * 
  *     property objCoefficients:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2341,7 +2383,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15objCoefficient
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":127
+/* "cylp/cy/CyCoinMpsIO.pyx":130
  * 
  *     property integerColumns:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2368,7 +2410,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_14integerColumns
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":128
+  /* "cylp/cy/CyCoinMpsIO.pyx":131
  *     property integerColumns:
  *         def __get__(self):
  *             return <object>self.CppSelf.np_integerColumns()             # <<<<<<<<<<<<<<
@@ -2381,7 +2423,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_14integerColumns
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":127
+  /* "cylp/cy/CyCoinMpsIO.pyx":130
  * 
  *     property integerColumns:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2396,7 +2438,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_14integerColumns
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":131
+/* "cylp/cy/CyCoinMpsIO.pyx":134
  * 
  *     property QPColumnStarts:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2423,7 +2465,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_14QPColumnStarts
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":132
+  /* "cylp/cy/CyCoinMpsIO.pyx":135
  *     property QPColumnStarts:
  *         def __get__(self):
  *             return <object>self.CppSelf.getQPColumnStarts()             # <<<<<<<<<<<<<<
@@ -2436,7 +2478,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_14QPColumnStarts
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":131
+  /* "cylp/cy/CyCoinMpsIO.pyx":134
  * 
  *     property QPColumnStarts:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2451,7 +2493,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_14QPColumnStarts
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":135
+/* "cylp/cy/CyCoinMpsIO.pyx":138
  * 
  *     property QPColumns:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2478,7 +2520,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_9QPColumns___get
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":136
+  /* "cylp/cy/CyCoinMpsIO.pyx":139
  *     property QPColumns:
  *         def __get__(self):
  *             return <object>self.CppSelf.getQPColumns()             # <<<<<<<<<<<<<<
@@ -2491,7 +2533,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_9QPColumns___get
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":135
+  /* "cylp/cy/CyCoinMpsIO.pyx":138
  * 
  *     property QPColumns:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2506,7 +2548,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_9QPColumns___get
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":139
+/* "cylp/cy/CyCoinMpsIO.pyx":142
  * 
  *     property QPElements:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2533,7 +2575,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_10QPElements___g
   PyObject *__pyx_t_1;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":140
+  /* "cylp/cy/CyCoinMpsIO.pyx":143
  *     property QPElements:
  *         def __get__(self):
  *             return <object>self.CppSelf.getQPElements()             # <<<<<<<<<<<<<<
@@ -2546,7 +2588,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_10QPElements___g
   __pyx_r = ((PyObject *)__pyx_t_1);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":139
+  /* "cylp/cy/CyCoinMpsIO.pyx":142
  * 
  *     property QPElements:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2561,7 +2603,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_10QPElements___g
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":143
+/* "cylp/cy/CyCoinMpsIO.pyx":146
  * 
  *     property matrixByRow:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2593,7 +2635,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByRow___
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":144
+  /* "cylp/cy/CyCoinMpsIO.pyx":147
  *     property matrixByRow:
  *         def __get__(self):
  *             cdef CppCoinPackedMatrix* m = self.CppSelf.IgetMatrixByRow()             # <<<<<<<<<<<<<<
@@ -2602,19 +2644,19 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByRow___
  */
   __pyx_v_m = __pyx_v_self->CppSelf->IgetMatrixByRow();
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":145
+  /* "cylp/cy/CyCoinMpsIO.pyx":148
  *         def __get__(self):
  *             cdef CppCoinPackedMatrix* m = self.CppSelf.IgetMatrixByRow()
  *             cym = CyCoinPackedMatrix()             # <<<<<<<<<<<<<<
  *             cym.CppSelf = m
  *             return cym
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_18CyCoinPackedMatrix_CyCoinPackedMatrix), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_18CyCoinPackedMatrix_CyCoinPackedMatrix), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_cym = ((struct __pyx_obj_4cylp_2cy_18CyCoinPackedMatrix_CyCoinPackedMatrix *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":146
+  /* "cylp/cy/CyCoinMpsIO.pyx":149
  *             cdef CppCoinPackedMatrix* m = self.CppSelf.IgetMatrixByRow()
  *             cym = CyCoinPackedMatrix()
  *             cym.CppSelf = m             # <<<<<<<<<<<<<<
@@ -2623,7 +2665,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByRow___
  */
   __pyx_v_cym->CppSelf = __pyx_v_m;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":147
+  /* "cylp/cy/CyCoinMpsIO.pyx":150
  *             cym = CyCoinPackedMatrix()
  *             cym.CppSelf = m
  *             return cym             # <<<<<<<<<<<<<<
@@ -2635,7 +2677,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByRow___
   __pyx_r = ((PyObject *)__pyx_v_cym);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":143
+  /* "cylp/cy/CyCoinMpsIO.pyx":146
  * 
  *     property matrixByRow:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2655,7 +2697,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByRow___
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":150
+/* "cylp/cy/CyCoinMpsIO.pyx":153
  * 
  *     property matrixByCol:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2687,7 +2729,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByCol___
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":151
+  /* "cylp/cy/CyCoinMpsIO.pyx":154
  *     property matrixByCol:
  *         def __get__(self):
  *             cdef CppCoinPackedMatrix* m = self.CppSelf.IgetMatrixByCol()             # <<<<<<<<<<<<<<
@@ -2696,19 +2738,19 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByCol___
  */
   __pyx_v_m = __pyx_v_self->CppSelf->IgetMatrixByCol();
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":152
+  /* "cylp/cy/CyCoinMpsIO.pyx":155
  *         def __get__(self):
  *             cdef CppCoinPackedMatrix* m = self.CppSelf.IgetMatrixByCol()
  *             cym = CyCoinPackedMatrix()             # <<<<<<<<<<<<<<
  *             cym.CppSelf = m
  *             return cym
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_18CyCoinPackedMatrix_CyCoinPackedMatrix), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_18CyCoinPackedMatrix_CyCoinPackedMatrix), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_cym = ((struct __pyx_obj_4cylp_2cy_18CyCoinPackedMatrix_CyCoinPackedMatrix *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":153
+  /* "cylp/cy/CyCoinMpsIO.pyx":156
  *             cdef CppCoinPackedMatrix* m = self.CppSelf.IgetMatrixByCol()
  *             cym = CyCoinPackedMatrix()
  *             cym.CppSelf = m             # <<<<<<<<<<<<<<
@@ -2717,7 +2759,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByCol___
  */
   __pyx_v_cym->CppSelf = __pyx_v_m;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":154
+  /* "cylp/cy/CyCoinMpsIO.pyx":157
  *             cym = CyCoinPackedMatrix()
  *             cym.CppSelf = m
  *             return cym             # <<<<<<<<<<<<<<
@@ -2729,7 +2771,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByCol___
   __pyx_r = ((PyObject *)__pyx_v_cym);
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":150
+  /* "cylp/cy/CyCoinMpsIO.pyx":153
  * 
  *     property matrixByCol:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2749,7 +2791,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_11matrixByCol___
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":157
+/* "cylp/cy/CyCoinMpsIO.pyx":160
  * 
  *     property objectiveOffset:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2779,7 +2821,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15objectiveOffse
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":158
+  /* "cylp/cy/CyCoinMpsIO.pyx":161
  *     property objectiveOffset:
  *         def __get__(self):
  *             return self.CppSelf.getObjectiveOffset()             # <<<<<<<<<<<<<<
@@ -2787,13 +2829,13 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15objectiveOffse
  *     property nVariables:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->CppSelf->getObjectiveOffset()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->CppSelf->getObjectiveOffset()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":157
+  /* "cylp/cy/CyCoinMpsIO.pyx":160
  * 
  *     property objectiveOffset:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2812,7 +2854,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_15objectiveOffse
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":161
+/* "cylp/cy/CyCoinMpsIO.pyx":164
  * 
  *     property nVariables:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2842,7 +2884,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_10nVariables___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":162
+  /* "cylp/cy/CyCoinMpsIO.pyx":165
  *     property nVariables:
  *         def __get__(self):
  *             return self.CppSelf.getNumCols()             # <<<<<<<<<<<<<<
@@ -2850,13 +2892,13 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_10nVariables___g
  *     property nConstraints:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->CppSelf->getNumCols()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->CppSelf->getNumCols()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":161
+  /* "cylp/cy/CyCoinMpsIO.pyx":164
  * 
  *     property nVariables:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2875,7 +2917,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_10nVariables___g
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":165
+/* "cylp/cy/CyCoinMpsIO.pyx":168
  * 
  *     property nConstraints:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2905,7 +2947,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_12nConstraints__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":166
+  /* "cylp/cy/CyCoinMpsIO.pyx":169
  *     property nConstraints:
  *         def __get__(self):
  *             return self.CppSelf.getNumRows()             # <<<<<<<<<<<<<<
@@ -2913,13 +2955,13 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_12nConstraints__
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->CppSelf->getNumRows()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->CppSelf->getNumRows()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":165
+  /* "cylp/cy/CyCoinMpsIO.pyx":168
  * 
  *     property nConstraints:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2938,7 +2980,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_11CyCoinMpsIO_12nConstraints__
   return __pyx_r;
 }
 
-/* "cylp/cy/CyCoinMpsIO.pyx":169
+/* "cylp/cy/CyCoinMpsIO.pyx":172
  * 
  * 
  * def getQpsExample():             # <<<<<<<<<<<<<<
@@ -2980,45 +3022,45 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getQpsExample", 0);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":173
+  /* "cylp/cy/CyCoinMpsIO.pyx":176
  *     Return full path to a QPS example file for doctests
  *     '''
  *     import os             # <<<<<<<<<<<<<<
  *     import inspect
  *     curpath = os.path.dirname(inspect.getfile(inspect.currentframe()))
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_os, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_os, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_os = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":174
+  /* "cylp/cy/CyCoinMpsIO.pyx":177
  *     '''
  *     import os
  *     import inspect             # <<<<<<<<<<<<<<
  *     curpath = os.path.dirname(inspect.getfile(inspect.currentframe()))
  *     return os.path.join(curpath, '../input/hs268.qps')
  */
-  __pyx_t_1 = __Pyx_patch_inspect(__Pyx_Import(__pyx_n_s_inspect, 0, -1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_patch_inspect(__Pyx_Import(__pyx_n_s_inspect, 0, -1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_inspect = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":175
+  /* "cylp/cy/CyCoinMpsIO.pyx":178
  *     import os
  *     import inspect
  *     curpath = os.path.dirname(inspect.getfile(inspect.currentframe()))             # <<<<<<<<<<<<<<
  *     return os.path.join(curpath, '../input/hs268.qps')
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_os, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_os, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dirname); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dirname); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_inspect, __pyx_n_s_getfile); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_inspect, __pyx_n_s_getfile); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_inspect, __pyx_n_s_currentframe); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_inspect, __pyx_n_s_currentframe); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3031,10 +3073,10 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
     }
   }
   if (__pyx_t_7) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -3049,17 +3091,17 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
     }
   }
   if (!__pyx_t_6) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -3075,17 +3117,17 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -3093,7 +3135,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
   __pyx_v_curpath = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":176
+  /* "cylp/cy/CyCoinMpsIO.pyx":179
  *     import inspect
  *     curpath = os.path.dirname(inspect.getfile(inspect.currentframe()))
  *     return os.path.join(curpath, '../input/hs268.qps')             # <<<<<<<<<<<<<<
@@ -3101,9 +3143,9 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_os, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_os, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -3118,7 +3160,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
       __pyx_t_8 = 1;
     }
   }
-  __pyx_t_2 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   if (__pyx_t_3) {
     __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -3129,7 +3171,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
   __Pyx_INCREF(__pyx_kp_s_input_hs268_qps);
   __Pyx_GIVEREF(__pyx_kp_s_input_hs268_qps);
   PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_8, __pyx_kp_s_input_hs268_qps);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -3137,7 +3179,7 @@ static PyObject *__pyx_pf_4cylp_2cy_11CyCoinMpsIO_getQpsExample(CYTHON_UNUSED Py
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":169
+  /* "cylp/cy/CyCoinMpsIO.pyx":172
  * 
  * 
  * def getQpsExample():             # <<<<<<<<<<<<<<
@@ -3337,7 +3379,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3393,7 +3435,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             info.buf = PyArray_DATA(self)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3702,7 +3744,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4535,7 +4577,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4603,7 +4645,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4712,7 +4754,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_Raise(__pyx_t_4, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -5546,7 +5588,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_u_CyCoinMpsIO_readMps_line_21, __pyx_k_CyCoinMpsIO_readMps_line_21, sizeof(__pyx_k_CyCoinMpsIO_readMps_line_21), 0, 1, 0, 0},
+  {&__pyx_kp_u_CyCoinMpsIO_readMps_line_22, __pyx_k_CyCoinMpsIO_readMps_line_22, sizeof(__pyx_k_CyCoinMpsIO_readMps_line_22), 0, 1, 0, 0},
   {&__pyx_kp_u_Format_string_allocated_too_shor, __pyx_k_Format_string_allocated_too_shor, sizeof(__pyx_k_Format_string_allocated_too_shor), 0, 1, 0, 0},
   {&__pyx_kp_u_Format_string_allocated_too_shor_2, __pyx_k_Format_string_allocated_too_shor_2, sizeof(__pyx_k_Format_string_allocated_too_shor_2), 0, 1, 0, 0},
   {&__pyx_kp_u_Non_native_byte_order_not_suppor, __pyx_k_Non_native_byte_order_not_suppor, sizeof(__pyx_k_Non_native_byte_order_not_suppor), 0, 1, 0, 0},
@@ -5557,6 +5599,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
   {&__pyx_n_s_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 1, 1},
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
+  {&__pyx_n_s_ascii, __pyx_k_ascii, sizeof(__pyx_k_ascii), 0, 0, 1, 1},
   {&__pyx_n_s_checkSymmetry, __pyx_k_checkSymmetry, sizeof(__pyx_k_checkSymmetry), 0, 0, 1, 1},
   {&__pyx_n_s_csc_matrixPlus, __pyx_k_csc_matrixPlus, sizeof(__pyx_k_csc_matrixPlus), 0, 0, 1, 1},
   {&__pyx_n_s_csr_matrixPlus, __pyx_k_csr_matrixPlus, sizeof(__pyx_k_csr_matrixPlus), 0, 0, 1, 1},
@@ -5567,6 +5610,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_dia_matrix, __pyx_k_dia_matrix, sizeof(__pyx_k_dia_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_diagonal, __pyx_k_diagonal, sizeof(__pyx_k_diagonal), 0, 0, 1, 1},
   {&__pyx_n_s_dirname, __pyx_k_dirname, sizeof(__pyx_k_dirname), 0, 0, 1, 1},
+  {&__pyx_n_s_encode, __pyx_k_encode, sizeof(__pyx_k_encode), 0, 0, 1, 1},
   {&__pyx_n_s_filename, __pyx_k_filename, sizeof(__pyx_k_filename), 0, 0, 1, 1},
   {&__pyx_n_s_getQpsExample, __pyx_k_getQpsExample, sizeof(__pyx_k_getQpsExample), 0, 0, 1, 1},
   {&__pyx_n_s_getfile, __pyx_k_getfile, sizeof(__pyx_k_getfile), 0, 0, 1, 1},
@@ -5607,6 +5651,17 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
+  /* "cylp/cy/CyCoinMpsIO.pyx":69
+ *         '''
+ *         if type(filename) is str:
+ *             filename = filename.encode('ascii')             # <<<<<<<<<<<<<<
+ * 
+ *         ret = self.CppSelf.readMps(filename)
+ */
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple_);
+  __Pyx_GIVEREF(__pyx_tuple_);
+
   /* "../../../../anaconda/envs/py34/lib/python3.4/site-packages/Cython/Includes/numpy/__init__.pxd":218
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_C_CONTIGUOUS)):
@@ -5614,9 +5669,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple_);
-  __Pyx_GIVEREF(__pyx_tuple_);
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__2);
+  __Pyx_GIVEREF(__pyx_tuple__2);
 
   /* "../../../../anaconda/envs/py34/lib/python3.4/site-packages/Cython/Includes/numpy/__init__.pxd":222
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
@@ -5625,9 +5680,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             info.buf = PyArray_DATA(self)
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__2);
-  __Pyx_GIVEREF(__pyx_tuple__2);
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
 
   /* "../../../../anaconda/envs/py34/lib/python3.4/site-packages/Cython/Includes/numpy/__init__.pxd":259
  *                 if ((descr.byteorder == c'>' and little_endian) or
@@ -5636,9 +5691,9 @@ static int __Pyx_InitCachedConstants(void) {
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "../../../../anaconda/envs/py34/lib/python3.4/site-packages/Cython/Includes/numpy/__init__.pxd":799
  * 
@@ -5647,9 +5702,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__4);
-  __Pyx_GIVEREF(__pyx_tuple__4);
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "../../../../anaconda/envs/py34/lib/python3.4/site-packages/Cython/Includes/numpy/__init__.pxd":803
  *         if ((child.byteorder == c'>' and little_endian) or
@@ -5658,9 +5713,9 @@ static int __Pyx_InitCachedConstants(void) {
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
 
   /* "../../../../anaconda/envs/py34/lib/python3.4/site-packages/Cython/Includes/numpy/__init__.pxd":823
  *             t = child.type_num
@@ -5669,21 +5724,21 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":169
+  /* "cylp/cy/CyCoinMpsIO.pyx":172
  * 
  * 
  * def getQpsExample():             # <<<<<<<<<<<<<<
  *     '''
  *     Return full path to a QPS example file for doctests
  */
-  __pyx_tuple__7 = PyTuple_Pack(3, __pyx_n_s_os, __pyx_n_s_inspect, __pyx_n_s_curpath); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(0, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jhelmus_dev_CyLP_cylp_cy_C, __pyx_n_s_getQpsExample, 169, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__8 = PyTuple_Pack(3, __pyx_n_s_os, __pyx_n_s_inspect, __pyx_n_s_curpath); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(0, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jhelmus_dev_CyLP_cylp_cy_C, __pyx_n_s_getQpsExample, 172, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5786,9 +5841,9 @@ PyMODINIT_FUNC PyInit_CyCoinMpsIO(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "CyCoinMpsIO", (PyObject *)&__pyx_type_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "CyCoinMpsIO", (PyObject *)&__pyx_type_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO = &__pyx_type_4cylp_2cy_11CyCoinMpsIO_CyCoinMpsIO;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
@@ -5811,47 +5866,47 @@ PyMODINIT_FUNC PyInit_CyCoinMpsIO(void)
   if (__Pyx_patch_abc() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":11
- * # cython: embedsignature=True
+  /* "cylp/cy/CyCoinMpsIO.pyx":12
+ * # cython: c_string_type=str, c_string_encoding=ascii
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
  * from scipy import sparse
  * from scipy.sparse import identity, dia_matrix
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":12
+  /* "cylp/cy/CyCoinMpsIO.pyx":13
  * 
  * import numpy as np
  * from scipy import sparse             # <<<<<<<<<<<<<<
  * from scipy.sparse import identity, dia_matrix
  * from cylp.py.utils.sparseUtil import csc_matrixPlus, csr_matrixPlus
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_sparse);
   __Pyx_GIVEREF(__pyx_n_s_sparse);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_sparse);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_scipy, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_scipy, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_sparse); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_sparse); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sparse, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sparse, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":13
+  /* "cylp/cy/CyCoinMpsIO.pyx":14
  * import numpy as np
  * from scipy import sparse
  * from scipy.sparse import identity, dia_matrix             # <<<<<<<<<<<<<<
  * from cylp.py.utils.sparseUtil import csc_matrixPlus, csr_matrixPlus
  * 
  */
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_identity);
   __Pyx_GIVEREF(__pyx_n_s_identity);
@@ -5859,27 +5914,27 @@ PyMODINIT_FUNC PyInit_CyCoinMpsIO(void)
   __Pyx_INCREF(__pyx_n_s_dia_matrix);
   __Pyx_GIVEREF(__pyx_n_s_dia_matrix);
   PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_dia_matrix);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_scipy_sparse, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_scipy_sparse, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_identity); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_identity); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_identity, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_identity, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_dia_matrix); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_dia_matrix); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_dia_matrix, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_dia_matrix, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":14
+  /* "cylp/cy/CyCoinMpsIO.pyx":15
  * from scipy import sparse
  * from scipy.sparse import identity, dia_matrix
  * from cylp.py.utils.sparseUtil import csc_matrixPlus, csr_matrixPlus             # <<<<<<<<<<<<<<
  * 
  * cdef class CyCoinMpsIO:
  */
-  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_csc_matrixPlus);
   __Pyx_GIVEREF(__pyx_n_s_csc_matrixPlus);
@@ -5887,29 +5942,29 @@ PyMODINIT_FUNC PyInit_CyCoinMpsIO(void)
   __Pyx_INCREF(__pyx_n_s_csr_matrixPlus);
   __Pyx_GIVEREF(__pyx_n_s_csr_matrixPlus);
   PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_csr_matrixPlus);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_cylp_py_utils_sparseUtil, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_cylp_py_utils_sparseUtil, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_csc_matrixPlus); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_csc_matrixPlus); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_csc_matrixPlus, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_csc_matrixPlus, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_csr_matrixPlus); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_csr_matrixPlus); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_csr_matrixPlus, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_csr_matrixPlus, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cylp/cy/CyCoinMpsIO.pyx":169
+  /* "cylp/cy/CyCoinMpsIO.pyx":172
  * 
  * 
  * def getQpsExample():             # <<<<<<<<<<<<<<
  *     '''
  *     Return full path to a QPS example file for doctests
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4cylp_2cy_11CyCoinMpsIO_1getQpsExample, NULL, __pyx_n_s_cylp_cy_CyCoinMpsIO); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4cylp_2cy_11CyCoinMpsIO_1getQpsExample, NULL, __pyx_n_s_cylp_cy_CyCoinMpsIO); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_getQpsExample, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_getQpsExample, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cylp/cy/CyCoinMpsIO.pyx":1
@@ -5919,7 +5974,7 @@ PyMODINIT_FUNC PyInit_CyCoinMpsIO(void)
  */
   __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_kp_u_CyCoinMpsIO_readMps_line_21, __pyx_kp_u_Read_an_mps_file_Check_if_the_f) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_kp_u_CyCoinMpsIO_readMps_line_22, __pyx_kp_u_Read_an_mps_file_Check_if_the_f) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -6035,6 +6090,25 @@ invalid_keyword:
     return 0;
 }
 
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
+
 static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     PyObject* result = __Pyx_PyObject_GetAttrStr(__pyx_b, name);
     if (unlikely(!result)) {
@@ -6064,25 +6138,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name) {
     }
     return result;
 }
-
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
-    }
-    return result;
-}
-#endif
 
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {

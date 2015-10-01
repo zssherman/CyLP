@@ -114,6 +114,8 @@ cdef class CyCbcModel:
                         whatDepthInSub=-1):
         self.cutGenerators.append(generator)
         Py_INCREF(generator)
+        if type(name) == str:
+            name = name.encode('ascii')
         self.CppSelf.addCutGenerator(generator.CppSelf, howOften,
                                     name, normal, atSolution,
                                     infeasible, howOftenInSub, whatDepth,
