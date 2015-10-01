@@ -834,7 +834,7 @@ struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps;
  *     #cdef object isPivotAcceptable_func
  * 
  *     cpdef int readMps(self, char* filename, int keepNames=*,             # <<<<<<<<<<<<<<
- *                       int ignoreErrors=*)
+ *                 int ignoreErrors=*) except *
  * 
  */
 struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps {
@@ -1613,6 +1613,8 @@ static int __Pyx_Print(PyObject*, PyObject *, int);
 static PyObject* __pyx_print = 0;
 static PyObject* __pyx_print_kwargs = 0;
 #endif
+
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
 
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
@@ -2996,7 +2998,7 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
  *                     maxInd = ind
  * 
  *         if maxCompInd != -1 and maxCompRc > 0.4 * maxRc:             # <<<<<<<<<<<<<<
- *             print s.iteration, ' : comp selected', maxCompInd
+ *             print(s.iteration, ' : comp selected', maxCompInd)
  *             return maxCompInd
  */
   __pyx_t_13 = ((__pyx_v_maxCompInd != -1L) != 0);
@@ -3013,7 +3015,7 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
     /* "cylp/cy/CyPEPivot.pyx":70
  * 
  *         if maxCompInd != -1 and maxCompRc > 0.4 * maxRc:
- *             print s.iteration, ' : comp selected', maxCompInd             # <<<<<<<<<<<<<<
+ *             print(s.iteration, ' : comp selected', maxCompInd)             # <<<<<<<<<<<<<<
  *             return maxCompInd
  * 
  */
@@ -3032,15 +3034,15 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
     PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_1);
     __pyx_t_8 = 0;
     __pyx_t_1 = 0;
-    if (__Pyx_Print(0, __pyx_t_3, 1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_PrintOne(0, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "cylp/cy/CyPEPivot.pyx":71
  *         if maxCompInd != -1 and maxCompRc > 0.4 * maxRc:
- *             print s.iteration, ' : comp selected', maxCompInd
+ *             print(s.iteration, ' : comp selected', maxCompInd)
  *             return maxCompInd             # <<<<<<<<<<<<<<
  * 
- *         print s.iteration, ' : incomp selected', maxInd
+ *         print(s.iteration, ' : incomp selected', maxInd)
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_maxCompInd); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -3053,7 +3055,7 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
  *                     maxInd = ind
  * 
  *         if maxCompInd != -1 and maxCompRc > 0.4 * maxRc:             # <<<<<<<<<<<<<<
- *             print s.iteration, ' : comp selected', maxCompInd
+ *             print(s.iteration, ' : comp selected', maxCompInd)
  *             return maxCompInd
  */
   }
@@ -3061,7 +3063,7 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
   /* "cylp/cy/CyPEPivot.pyx":73
  *             return maxCompInd
  * 
- *         print s.iteration, ' : incomp selected', maxInd             # <<<<<<<<<<<<<<
+ *         print(s.iteration, ' : incomp selected', maxInd)             # <<<<<<<<<<<<<<
  *         self.updateP()
  *         self.updateW()
  */
@@ -3080,12 +3082,12 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
   PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_1);
   __pyx_t_3 = 0;
   __pyx_t_1 = 0;
-  if (__Pyx_Print(0, __pyx_t_8, 1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
   /* "cylp/cy/CyPEPivot.pyx":74
  * 
- *         print s.iteration, ' : incomp selected', maxInd
+ *         print(s.iteration, ' : incomp selected', maxInd)
  *         self.updateP()             # <<<<<<<<<<<<<<
  *         self.updateW()
  *         #print 'updated'
@@ -3113,7 +3115,7 @@ static PyObject *__pyx_f_4cylp_2cy_9CyPEPivot_9CyPEPivot_pivotColumn(struct __py
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
   /* "cylp/cy/CyPEPivot.pyx":75
- *         print s.iteration, ' : incomp selected', maxInd
+ *         print(s.iteration, ' : incomp selected', maxInd)
  *         self.updateP()
  *         self.updateW()             # <<<<<<<<<<<<<<
  *         #print 'updated'
@@ -7210,6 +7212,42 @@ bad:
     if (kwargs != __pyx_print_kwargs)
         Py_XDECREF(kwargs);
     return -1;
+}
+#endif
+
+#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    if (PyFile_SoftSpace(f, 0)) {
+        if (PyFile_WriteString(" ", f) < 0)
+            goto error;
+    }
+    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
+        goto error;
+    if (PyFile_WriteString("\n", f) < 0)
+        goto error;
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+    /* the line below is just to avoid C compiler
+     * warnings about unused functions */
+    return __Pyx_Print(f, NULL, 0);
+}
+#else
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
+    int res;
+    PyObject* arg_tuple = PyTuple_Pack(1, o);
+    if (unlikely(!arg_tuple))
+        return -1;
+    res = __Pyx_Print(stream, arg_tuple, 1);
+    Py_DECREF(arg_tuple);
+    return res;
 }
 #endif
 

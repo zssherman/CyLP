@@ -838,7 +838,7 @@ struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps;
  *     #cdef object isPivotAcceptable_func
  * 
  *     cpdef int readMps(self, char* filename, int keepNames=*,             # <<<<<<<<<<<<<<
- *                       int ignoreErrors=*)
+ *                 int ignoreErrors=*) except *
  * 
  */
 struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps {
@@ -1618,6 +1618,8 @@ static PyObject* __pyx_print = 0;
 static PyObject* __pyx_print_kwargs = 0;
 #endif
 
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
+
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
     #define __Pyx_CREAL(z) ((z).real())
@@ -2110,7 +2112,7 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
   __pyx_t_3.__pyx_n = 2;
   __pyx_t_3.keepNames = 0;
   __pyx_t_3.ignoreErrors = 0;
-  ((struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex *)__pyx_v_s->__pyx_vtab)->readMps(__pyx_v_s, __pyx_t_2, 0, &__pyx_t_3); 
+  ((struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex *)__pyx_v_s->__pyx_vtab)->readMps(__pyx_v_s, __pyx_t_2, 0, &__pyx_t_3); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "cylp/cy/CyTest.pyx":15
  *     cdef CyPEPivot ppivot
@@ -2215,7 +2217,7 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  * 
  *     start = clock()             # <<<<<<<<<<<<<<
  *     s.primal()
- *     print 'Exec time: ',  clock() - start
+ *     print('Exec time: ',  clock() - start)
  */
   __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_clock); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
@@ -2244,7 +2246,7 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  * 
  *     start = clock()
  *     s.primal()             # <<<<<<<<<<<<<<
- *     print 'Exec time: ',  clock() - start
+ *     print('Exec time: ',  clock() - start)
  *     return s.objectiveValue
  */
   __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_s), __pyx_n_s_primal); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -2272,7 +2274,7 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
   /* "cylp/cy/CyTest.pyx":25
  *     start = clock()
  *     s.primal()
- *     print 'Exec time: ',  clock() - start             # <<<<<<<<<<<<<<
+ *     print('Exec time: ',  clock() - start)             # <<<<<<<<<<<<<<
  *     return s.objectiveValue
  */
   __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_clock); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -2306,12 +2308,12 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_5);
   __pyx_t_5 = 0;
-  if (__Pyx_Print(0, __pyx_t_1, 1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "cylp/cy/CyTest.pyx":26
  *     s.primal()
- *     print 'Exec time: ',  clock() - start
+ *     print('Exec time: ',  clock() - start)
  *     return s.objectiveValue             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5857,6 +5859,42 @@ bad:
     if (kwargs != __pyx_print_kwargs)
         Py_XDECREF(kwargs);
     return -1;
+}
+#endif
+
+#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    if (PyFile_SoftSpace(f, 0)) {
+        if (PyFile_WriteString(" ", f) < 0)
+            goto error;
+    }
+    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
+        goto error;
+    if (PyFile_WriteString("\n", f) < 0)
+        goto error;
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+    /* the line below is just to avoid C compiler
+     * warnings about unused functions */
+    return __Pyx_Print(f, NULL, 0);
+}
+#else
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
+    int res;
+    PyObject* arg_tuple = PyTuple_Pack(1, o);
+    if (unlikely(!arg_tuple))
+        return -1;
+    res = __Pyx_Print(stream, arg_tuple, 1);
+    Py_DECREF(arg_tuple);
+    return res;
 }
 #endif
 

@@ -23233,7 +23233,7 @@ static int __pyx_f_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps(struct __pyx_
  *         '''
  *         name, ext = os.path.splitext(filename)             # <<<<<<<<<<<<<<
  *         if ext not in ['.mps', '.qps']:
- *             print 'unrecognised extension %s' % ext
+ *             print('unrecognised extension %s' % ext)
  */
   __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_os); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1485; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
@@ -23330,7 +23330,7 @@ static int __pyx_f_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps(struct __pyx_
  *         '''
  *         name, ext = os.path.splitext(filename)
  *         if ext not in ['.mps', '.qps']:             # <<<<<<<<<<<<<<
- *             print 'unrecognised extension %s' % ext
+ *             print('unrecognised extension %s' % ext)
  *             return -1
  */
   __Pyx_INCREF(__pyx_v_ext);
@@ -23351,7 +23351,7 @@ static int __pyx_f_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps(struct __pyx_
     /* "cylp/cy/CyClpSimplex.pyx":1487
  *         name, ext = os.path.splitext(filename)
  *         if ext not in ['.mps', '.qps']:
- *             print 'unrecognised extension %s' % ext             # <<<<<<<<<<<<<<
+ *             print('unrecognised extension %s' % ext)             # <<<<<<<<<<<<<<
  *             return -1
  * 
  */
@@ -23362,7 +23362,7 @@ static int __pyx_f_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps(struct __pyx_
 
     /* "cylp/cy/CyClpSimplex.pyx":1488
  *         if ext not in ['.mps', '.qps']:
- *             print 'unrecognised extension %s' % ext
+ *             print('unrecognised extension %s' % ext)
  *             return -1             # <<<<<<<<<<<<<<
  * 
  *         if ext == '.mps':
@@ -23374,7 +23374,7 @@ static int __pyx_f_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps(struct __pyx_
  *         '''
  *         name, ext = os.path.splitext(filename)
  *         if ext not in ['.mps', '.qps']:             # <<<<<<<<<<<<<<
- *             print 'unrecognised extension %s' % ext
+ *             print('unrecognised extension %s' % ext)
  *             return -1
  */
   }
@@ -27070,7 +27070,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_144preSolve(st
  *                                 numberPasses, dropNames, doRowObjective)
  *         s = CyClpSimplex()             # <<<<<<<<<<<<<<
  *         if model == NULL:
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  */
   __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_12CyClpSimplex_CyClpSimplex), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
@@ -27081,7 +27081,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_144preSolve(st
  *                                 numberPasses, dropNames, doRowObjective)
  *         s = CyClpSimplex()
  *         if model == NULL:             # <<<<<<<<<<<<<<
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return s
  */
   __pyx_t_5 = ((__pyx_v_model == NULL) != 0);
@@ -27090,7 +27090,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_144preSolve(st
     /* "cylp/cy/CyClpSimplex.pyx":1756
  *         s = CyClpSimplex()
  *         if model == NULL:
- *             print "Presolve says problem infeasible."             # <<<<<<<<<<<<<<
+ *             print("Presolve says problem infeasible.")             # <<<<<<<<<<<<<<
  *             return s
  * 
  */
@@ -27098,7 +27098,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_144preSolve(st
 
     /* "cylp/cy/CyClpSimplex.pyx":1757
  *         if model == NULL:
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return s             # <<<<<<<<<<<<<<
  * 
  *         s.setCppSelf(model)
@@ -27112,7 +27112,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_144preSolve(st
  *                                 numberPasses, dropNames, doRowObjective)
  *         s = CyClpSimplex()
  *         if model == NULL:             # <<<<<<<<<<<<<<
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return s
  */
   }
@@ -27408,7 +27408,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_148dualWithPre
  *                                 feasibilityTolerance, keepIntegers,
  *                                 numberPasses, dropNames, doRowObjective)             # <<<<<<<<<<<<<<
  *         if ret == -2000:
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  */
   __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_numberPasses); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1771; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_dropNames); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1771; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -27427,7 +27427,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_148dualWithPre
  *                                 feasibilityTolerance, keepIntegers,
  *                                 numberPasses, dropNames, doRowObjective)
  *         if ret == -2000:             # <<<<<<<<<<<<<<
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return -2000
  */
   __pyx_t_5 = ((__pyx_v_ret == -2000L) != 0);
@@ -27436,7 +27436,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_148dualWithPre
     /* "cylp/cy/CyClpSimplex.pyx":1773
  *                                 numberPasses, dropNames, doRowObjective)
  *         if ret == -2000:
- *             print "Presolve says problem infeasible."             # <<<<<<<<<<<<<<
+ *             print("Presolve says problem infeasible.")             # <<<<<<<<<<<<<<
  *             return -2000
  * 
  */
@@ -27444,7 +27444,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_148dualWithPre
 
     /* "cylp/cy/CyClpSimplex.pyx":1774
  *         if ret == -2000:
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return -2000             # <<<<<<<<<<<<<<
  * 
  *         return problemStatus[ret]
@@ -27458,7 +27458,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_148dualWithPre
  *                                 feasibilityTolerance, keepIntegers,
  *                                 numberPasses, dropNames, doRowObjective)
  *         if ret == -2000:             # <<<<<<<<<<<<<<
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return -2000
  */
   }
@@ -27640,7 +27640,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_150primalWithP
  *                                 feasibilityTolerance, keepIntegers,
  *                                 numberPasses, dropNames, doRowObjective)             # <<<<<<<<<<<<<<
  *         if ret == -2000:
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  */
   __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_numberPasses); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1783; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_dropNames); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1783; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -27659,7 +27659,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_150primalWithP
  *                                 feasibilityTolerance, keepIntegers,
  *                                 numberPasses, dropNames, doRowObjective)
  *         if ret == -2000:             # <<<<<<<<<<<<<<
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return -2000
  */
   __pyx_t_5 = ((__pyx_v_ret == -2000L) != 0);
@@ -27668,7 +27668,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_150primalWithP
     /* "cylp/cy/CyClpSimplex.pyx":1785
  *                                 numberPasses, dropNames, doRowObjective)
  *         if ret == -2000:
- *             print "Presolve says problem infeasible."             # <<<<<<<<<<<<<<
+ *             print("Presolve says problem infeasible.")             # <<<<<<<<<<<<<<
  *             return -2000
  * 
  */
@@ -27676,7 +27676,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_150primalWithP
 
     /* "cylp/cy/CyClpSimplex.pyx":1786
  *         if ret == -2000:
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return -2000             # <<<<<<<<<<<<<<
  * 
  *         return problemStatus[ret]
@@ -27690,7 +27690,7 @@ static PyObject *__pyx_pf_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_150primalWithP
  *                                 feasibilityTolerance, keepIntegers,
  *                                 numberPasses, dropNames, doRowObjective)
  *         if ret == -2000:             # <<<<<<<<<<<<<<
- *             print "Presolve says problem infeasible."
+ *             print("Presolve says problem infeasible.")
  *             return -2000
  */
   }
