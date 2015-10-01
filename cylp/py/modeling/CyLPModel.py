@@ -855,7 +855,7 @@ class CyLPModel(object):
                 var.mpsNames = [var.name + '_' + '_'.join(x) for x in \
                         product(*[map(str, range(i)) for i in var.dims])]
             else:
-                var.mpsNames = ['%s_%s' % (var.name, i) for i in xrange(var.dim)]
+                var.mpsNames = ['%s_%s' % (var.name, i) for i in range(var.dim)]
 
             o = self.objective_
             if isinstance(o, np.ndarray):
@@ -994,7 +994,7 @@ class CyLPModel(object):
 
         if addMpsNames:
             c.mpsNames = []
-            for i in xrange(c.nRows):
+            for i in range(c.nRows):
                 c.mpsNames.append('%s_%s' % (c.name, str(i)))
 
 

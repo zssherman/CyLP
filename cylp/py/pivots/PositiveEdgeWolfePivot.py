@@ -45,8 +45,8 @@ class PositiveEdgeWolfePivot(PositiveEdgePivot):
 
         goodVariableFound = 0
 
-        for iSegment in xrange(numberOfSegments):
-#           comp_ind = [i for i in xrange(dim) if not s.flagged(i) and \
+        for iSegment in range(numberOfSegments):
+#           comp_ind = [i for i in range(dim) if not s.flagged(i) and \
 #                     (rc[i] < -tol and \
 #                     s.getStatus(i) == 3 and \
 #                     self.isCompatible(i)) \
