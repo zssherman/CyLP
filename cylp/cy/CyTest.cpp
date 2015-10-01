@@ -837,7 +837,7 @@ struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps;
 /* "cylp/cy/CyClpSimplex.pxd":326
  *     #cdef object isPivotAcceptable_func
  * 
- *     cpdef int readMps(self, char* filename, int keepNames=*,             # <<<<<<<<<<<<<<
+ *     cpdef int readMps(self, filename, int keepNames=*,             # <<<<<<<<<<<<<<
  *                 int ignoreErrors=*) except *
  * 
  */
@@ -1381,7 +1381,7 @@ static struct __pyx_vtabstruct_4cylp_2cy_10CyCbcModel_CyCbcModel *__pyx_vtabptr_
 
 struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex {
   PyObject *(*setCppSelf)(struct __pyx_obj_4cylp_2cy_12CyClpSimplex_CyClpSimplex *, IClpSimplex *);
-  int (*readMps)(struct __pyx_obj_4cylp_2cy_12CyClpSimplex_CyClpSimplex *, char *, int __pyx_skip_dispatch, struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps *__pyx_optional_args);
+  int (*readMps)(struct __pyx_obj_4cylp_2cy_12CyClpSimplex_CyClpSimplex *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps *__pyx_optional_args);
   PyObject *(*setPrimalColumnPivotAlgorithm)(struct __pyx_obj_4cylp_2cy_12CyClpSimplex_CyClpSimplex *, void *);
   PyObject *(*setDualRowPivotAlgorithm)(struct __pyx_obj_4cylp_2cy_12CyClpSimplex_CyClpSimplex *, void *);
   double *(*primalColumnSolution)(struct __pyx_obj_4cylp_2cy_12CyClpSimplex_CyClpSimplex *);
@@ -2079,11 +2079,10 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  char *__pyx_t_2;
-  struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps __pyx_t_3;
-  int __pyx_t_4;
+  struct __pyx_opt_args_4cylp_2cy_12CyClpSimplex_12CyClpSimplex_readMps __pyx_t_2;
+  int __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2108,11 +2107,10 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  * 
  *     cdef CyDantzigPivot dpivot
  */
-  __pyx_t_2 = __Pyx_PyObject_AsString(__pyx_v_fileName); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_3.__pyx_n = 2;
-  __pyx_t_3.keepNames = 0;
-  __pyx_t_3.ignoreErrors = 0;
-  ((struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex *)__pyx_v_s->__pyx_vtab)->readMps(__pyx_v_s, __pyx_t_2, 0, &__pyx_t_3); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2.__pyx_n = 2;
+  __pyx_t_2.keepNames = 0;
+  __pyx_t_2.ignoreErrors = 0;
+  ((struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex *)__pyx_v_s->__pyx_vtab)->readMps(__pyx_v_s, __pyx_v_fileName, 0, &__pyx_t_2); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "cylp/cy/CyTest.pyx":15
  *     cdef CyPEPivot ppivot
@@ -2121,8 +2119,8 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *         dpivot = CyDantzigPivot(s)
  *         #s.setPerturbation(50)
  */
-  __pyx_t_4 = (__Pyx_PyString_Equals(__pyx_v_method, __pyx_n_s_d, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__pyx_t_4) {
+  __pyx_t_3 = (__Pyx_PyString_Equals(__pyx_v_method, __pyx_n_s_d, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_t_3) {
 
     /* "cylp/cy/CyTest.pyx":16
  * 
@@ -2136,11 +2134,11 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
     __Pyx_INCREF(((PyObject *)__pyx_v_s));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_s));
     PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_s));
-    __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_14CyDantzigPivot_CyDantzigPivot), __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_14CyDantzigPivot_CyDantzigPivot), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_v_dpivot = ((struct __pyx_obj_4cylp_2cy_14CyDantzigPivot_CyDantzigPivot *)__pyx_t_5);
-    __pyx_t_5 = 0;
+    __pyx_v_dpivot = ((struct __pyx_obj_4cylp_2cy_14CyDantzigPivot_CyDantzigPivot *)__pyx_t_4);
+    __pyx_t_4 = 0;
 
     /* "cylp/cy/CyTest.pyx":18
  *         dpivot = CyDantzigPivot(s)
@@ -2149,9 +2147,9 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *     elif method == 'p':
  *         ppivot = CyPEPivot(s)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex *)__pyx_v_s->__pyx_vtab)->setPrimalColumnPivotAlgorithm(__pyx_v_s, __pyx_v_dpivot->__pyx_base.CppSelf); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_4 = ((struct __pyx_vtabstruct_4cylp_2cy_12CyClpSimplex_CyClpSimplex *)__pyx_v_s->__pyx_vtab)->setPrimalColumnPivotAlgorithm(__pyx_v_s, __pyx_v_dpivot->__pyx_base.CppSelf); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
     /* "cylp/cy/CyTest.pyx":15
  *     cdef CyPEPivot ppivot
@@ -2170,8 +2168,8 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *         ppivot = CyPEPivot(s)
  *         s.setPrimalColumnPivotAlgorithm(ppivot.CppSelf)
  */
-  __pyx_t_4 = (__Pyx_PyString_Equals(__pyx_v_method, __pyx_n_s_p, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__pyx_t_4) {
+  __pyx_t_3 = (__Pyx_PyString_Equals(__pyx_v_method, __pyx_n_s_p, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_t_3) {
 
     /* "cylp/cy/CyTest.pyx":20
  *         s.setPrimalColumnPivotAlgorithm(dpivot.CppSelf)
@@ -2180,14 +2178,14 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *         s.setPrimalColumnPivotAlgorithm(ppivot.CppSelf)
  * 
  */
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(((PyObject *)__pyx_v_s));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_s));
-    PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)__pyx_v_s));
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_9CyPEPivot_CyPEPivot), __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyTuple_SET_ITEM(__pyx_t_4, 0, ((PyObject *)__pyx_v_s));
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4cylp_2cy_9CyPEPivot_CyPEPivot), __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_ppivot = ((struct __pyx_obj_4cylp_2cy_9CyPEPivot_CyPEPivot *)__pyx_t_1);
     __pyx_t_1 = 0;
 
@@ -2219,26 +2217,26 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *     s.primal()
  *     print('Exec time: ',  clock() - start)
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_clock); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_clock); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  if (__pyx_t_6) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_5) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_start = __pyx_t_1;
   __pyx_t_1 = 0;
 
@@ -2249,26 +2247,26 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *     print('Exec time: ',  clock() - start)
  *     return s.objectiveValue
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_s), __pyx_n_s_primal); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_s), __pyx_n_s_primal); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  if (__pyx_t_6) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_5) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "cylp/cy/CyTest.pyx":25
@@ -2277,37 +2275,37 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
  *     print('Exec time: ',  clock() - start)             # <<<<<<<<<<<<<<
  *     return s.objectiveValue
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_clock); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_clock); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  if (__pyx_t_6) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_5) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_v_start); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_v_start); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_kp_s_Exec_time);
   __Pyx_GIVEREF(__pyx_kp_s_Exec_time);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_s_Exec_time);
-  __Pyx_GIVEREF(__pyx_t_5);
-  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_5);
-  __pyx_t_5 = 0;
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_4);
+  __pyx_t_4 = 0;
   if (__Pyx_PrintOne(0, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -2334,8 +2332,8 @@ static PyObject *__pyx_pf_4cylp_2cy_6CyTest_CySolve(CYTHON_UNUSED PyObject *__py
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("cylp.cy.CyTest.CySolve", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
