@@ -323,7 +323,7 @@ cdef class CyClpSimplex:
     #cdef object pivotMethodObject
     #cdef object isPivotAcceptable_func
 
-    cpdef int readMps(self, char* filename, int keepNames=*,
+    cpdef int readMps(self, filename, int keepNames=*,
                 int ignoreErrors=*) except *
 
     cdef setPrimalColumnPivotAlgorithm(self, void* choice)
