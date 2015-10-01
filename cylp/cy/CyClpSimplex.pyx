@@ -1484,7 +1484,7 @@ cdef class CyClpSimplex:
         '''
         name, ext = os.path.splitext(filename)
         if ext not in ['.mps', '.qps']:
-            print 'unrecognised extension %s' % ext
+            print('unrecognised extension %s' % ext)
             return -1
 
         if ext == '.mps':
@@ -1753,7 +1753,7 @@ cdef class CyClpSimplex:
                                 numberPasses, dropNames, doRowObjective)
         s = CyClpSimplex()
         if model == NULL:
-            print "Presolve says problem infeasible."
+            print("Presolve says problem infeasible.")
             return s
 
         s.setCppSelf(model)
@@ -1770,7 +1770,7 @@ cdef class CyClpSimplex:
                                 feasibilityTolerance, keepIntegers,
                                 numberPasses, dropNames, doRowObjective)
         if ret == -2000:
-            print "Presolve says problem infeasible."
+            print("Presolve says problem infeasible.")
             return -2000
 
         return problemStatus[ret]
@@ -1782,7 +1782,7 @@ cdef class CyClpSimplex:
                                 feasibilityTolerance, keepIntegers,
                                 numberPasses, dropNames, doRowObjective)
         if ret == -2000:
-            print "Presolve says problem infeasible."
+            print("Presolve says problem infeasible.")
             return -2000
 
         return problemStatus[ret]

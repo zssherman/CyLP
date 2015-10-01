@@ -67,10 +67,10 @@ cdef class CyPEPivot(CyClpPrimalColumnPivotBase):
                     maxInd = ind
 
         if maxCompInd != -1 and maxCompRc > 0.4 * maxRc:
-            print s.iteration, ' : comp selected', maxCompInd
+            print(s.iteration, ' : comp selected', maxCompInd)
             return maxCompInd
 
-        print s.iteration, ' : incomp selected', maxInd
+        print(s.iteration, ' : incomp selected', maxInd)
         self.updateP()
         self.updateW()
         #print 'updated'

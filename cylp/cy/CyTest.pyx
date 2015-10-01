@@ -22,5 +22,5 @@ def CySolve(fileName, method):
 
     start = clock()
     s.primal()
-    print 'Exec time: ',  clock() - start
+    print('Exec time: ',  clock() - start)
     return s.objectiveValue
