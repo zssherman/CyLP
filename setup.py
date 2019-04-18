@@ -32,7 +32,7 @@ cppFilesDir = join('cylp', 'cpp')
 #Do "export CYLP_USE_CYTHON=" if you want to build cylp from scratch, using Cython
 try:
     os.environ['CYLP_USE_CYTHON']
-    USECYTHON = True
+    USECYTHON = False
 except:
     USECYTHON = False
 
